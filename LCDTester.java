@@ -1,4 +1,4 @@
-
+package pruebapsl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
-*
-* @author Daniel Yepes
-*/
+ *
+ * @author Daniel Yepes
+ */
 
 public class LCDTester {
 
@@ -32,12 +32,12 @@ public class LCDTester {
                 comando = lector.next();
 
                 // Valida si es un numero
-                if (impresorLCD.isNumeric(comando)) 
+                if (ValidateRange.CheckIsNumeric(comando)) 
                 {
                     espacioDig = Integer.parseInt(comando);
                     
                     //valida si el espacio ingresado es correcto
-                    impresorLCD.CheckEspacioDig(espacioDig);
+                    ValidateRange.CheckEspacioDig(espacioDig);
                 
                 }
                 else 
@@ -60,11 +60,12 @@ public class LCDTester {
             }
 
             Iterator<String> iterator = listaComando.iterator();
+            
             while (iterator.hasNext()) 
             {
                 try
                 {
-                    impresorLCD.procesar(iterator.next(), espacioDig);
+                    impresorLCD.ProcessEntry(iterator.next(), espacioDig);
                 }
                 catch (Exception ex)
                 {

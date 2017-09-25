@@ -1,13 +1,13 @@
-
+package pruebapsl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 /**
-*
-* @author Daniel Yepes
-*/
+ *
+ * @author Daniel Yepes
+ */
 
 public class ImpresorLCD {
 
@@ -44,39 +44,41 @@ public class ImpresorLCD {
     }
 
     /**
-    *
-    * Metodo encargado de añadir una linea a la matriz de Impresion
-    *
-    * @param matriz Matriz Impresion
-    * @param punto Punto Pivote
-    * @param posFija Posicion Fija
-    * @param size Tamaño Segmento
-    * @param caracter Caracter Segmento
-    */
-    private void adicionarLinea(String[][] matriz, int[] punto, String posFija,
+     *
+     * Metodo encargado de añadir una linea a la matriz de Impresion
+     *
+     * @param matriz Matriz Impresion
+     * @param punto Punto Pivote
+     * @param posFija Posicion Fija
+     * @param size Tamaño Segmento
+     * @param caracter Caracter Segmento
+     */
+    public void adicionarLinea(String[][] matriz, int[] punto, String posFija,
             int size, String caracter) {
 
-        if (posFija.equalsIgnoreCase(POSICION_X)) {
-            
+        if (posFija.equalsIgnoreCase(POSICION_X)) 
+        {
             AddLineInX(size, punto, matriz, caracter);
+            ImprimeMatriz();
         }
         else
         {
             AddLineInY(size, punto, matriz, caracter);
+            ImprimeMatriz();
         }
     }
 
     /**
-    * 
-    * Metodo encargado de añadir lineas en Y
-    * 
-    * @param matriz Matriz Impresion
-    * @param punto Punto Pivote
-    * @param size Tamaño Segmento
-    * @param caracter Caracter Segmento
-    * @return 
-    */
-    private String[][] AddLineInY(int size, int[] punto, String[][] matriz, String caracter) {
+     * 
+     * Metodo encargado de añadir lineas en Y
+     * 
+     * @param matriz Matriz Impresion
+     * @param punto Punto Pivote
+     * @param size Tamaño Segmento
+     * @param caracter Caracter Segmento
+     * @return 
+     */
+    public String[][] AddLineInY(int size, int[] punto, String[][] matriz, String caracter) {
         
         for (int i = 1; i <= size; i++) {
             int valor = punto[0] + i;
@@ -86,15 +88,15 @@ public class ImpresorLCD {
     }
     
     /**
-    * 
-    * Metodo encargado de añadir lineas en X
-    * 
-    * @param matriz Matriz Impresion
-    * @param punto Punto Pivote
-    * @param size Tamaño Segmento
-    * @param caracter Caracter Segmento
-    * @return 
-    */
+     * 
+     * Metodo encargado de añadir lineas en X
+     * 
+     * @param matriz Matriz Impresion
+     * @param punto Punto Pivote
+     * @param size Tamaño Segmento
+     * @param caracter Caracter Segmento
+     * @return 
+     */
     private String[][] AddLineInX(int size, int[] punto, String[][] matriz, String caracter) {
         for (int y = 1; y <= size; y++) {
             int valor = punto[1] + y;
@@ -104,11 +106,11 @@ public class ImpresorLCD {
     }
 
     /**
-    *
-    * Metodo encargado de adicionar un segmento a la matriz de Impresion
-    *
-    * @param segmento Segmento a adicionar
-    */
+     *
+     * Metodo encargado de adicionar un segmento a la matriz de Impresion
+     *
+     * @param segmento Segmento a adicionar
+     */
     private void adicionarSegmento(int segmento) {
 
         switch (segmento) {
@@ -146,13 +148,13 @@ public class ImpresorLCD {
     }
 
     /**
-    *
-    * Metodo encargado de definir los segmentos que componen un digito y a
-    * partir de los segmentos adicionar la representacion del digito a la
-    * matriz
-    *
-    * @param numero Digito
-    */
+     *
+     * Metodo encargado de definir los segmentos que componen un digito y a
+     * partir de los segmentos adicionar la representacion del digito a la
+     * matriz
+     *
+     * @param numero Digito
+     */
     private void adicionarDigito(int numero) {
 
         // Establece los segmentos de cada numero
@@ -240,13 +242,13 @@ public class ImpresorLCD {
     }
 
     /**
-    *
-    * Metodo encargado de imprimir un numero
-    *
-    * @param size Tamaño Segmento Digitos
-    * @param numeroImp Numero a Imprimir
-    * @param espacio Espacio Entre digitos
-    */
+     *
+     * Metodo encargado de imprimir un numero
+     *
+     * @param size Tamaño Segmento Digitos
+     * @param numeroImp Numero a Imprimir
+     * @param espacio Espacio Entre digitos
+     */
     private void imprimirNumero(int size, String numeroImp, int espacio) {
         int pivotX = 0;
         char[] digitos;
@@ -272,12 +274,7 @@ public class ImpresorLCD {
         // crea el arreglo de digitos
         digitos = numeroImp.toCharArray();
 
-        // Inicializa matriz
-        for (int i = 0; i < this.totalFilas; i++) {
-            for (int j = 0; j < this.totalColum; j++) {
-                this.matrizImpr[i][j] = " ";
-            }
-        }
+        InicializateMatriz();
 
         for (char digito : digitos) {
 
@@ -310,6 +307,15 @@ public class ImpresorLCD {
             ImprimeMatriz();
     }
 
+    private void InicializateMatriz() {
+        // Inicializa matriz
+        for (int i = 0; i < this.totalFilas; i++) {
+            for (int j = 0; j < this.totalColum; j++) {
+                this.matrizImpr[i][j] = " ";
+            }
+        }
+    }
+
     private void ImprimeMatriz() {
         // Imprime matriz
         for (int i = 0; i < this.totalFilas; i++) {
@@ -335,15 +341,15 @@ public class ImpresorLCD {
     }
 
     /**
-    *
-    * Metodo encargado de procesar la entrada que contiene el size del segmento
-    * de los digitos y los digitos a imprimir
-    *
-    * @param comando Entrada que contiene el size del segmento de los digito y
-    * el numero a imprimir
-    * @param espacioDig Espacio Entre digitos
-    */
-    public void procesar(String comando, int espacioDig) {
+     *
+     * Metodo encargado de procesar la entrada que contiene el size del segmento
+     * de los digitos y los digitos a imprimir
+     *
+     * @param comando Entrada que contiene el size del segmento de los digito y
+     * el numero a imprimir
+     * @param espacioDig Espacio Entre digitos
+     */
+    public void ProcessEntry(String comando, int espacioDig) {
 
         String[] parametros;
         
@@ -361,11 +367,11 @@ public class ImpresorLCD {
         CheckParametersIsValid(parametros.length,comando);
 
             //Valida que el parametro size sea un numerico
-            if (isNumeric(parametros[0])) {
+            if (ValidateRange.CheckIsNumeric(parametros[0])) {
                 sizeImp = Integer.parseInt(parametros[0]);
                 
                 // se valida que el size este entre 1 y 10
-                CheckSizeImp(sizeImp);
+                ValidateRange.CheckSizeImp(sizeImp);
                 
             } else {
                 throw new IllegalArgumentException("Parametro Size [" + parametros[0]
@@ -379,26 +385,11 @@ public class ImpresorLCD {
 
     /**
     *
-    * Metodo encargado de validar el tamaño de la matriz
-    * 
-    * @param sizeImp tamaño de la matriz
-    * 
-    */ 
-    private void CheckSizeImp(int sizeImp) {
-        // se valida que el size este entre 1 y 10
-        if (sizeImp < 1 || sizeImp > 10) {
-            throw new IllegalArgumentException("El parametro size [" + sizeImp
-                    + "] debe estar entre 1 y 10");
-        }
-    }
-
-    /**
-    *
     *Metodo encargado de validar si el rango de los parametros es correcto
     * 
     *@param size Tamaño de los parametros
     *@param comando Entrada que contiene el size del segmento de los digito y
-    * el numero a imprimir
+     * el numero a imprimir
     */
     private void CheckParametersIsValid(int size,String comando) {
         //Valida la que la cantidad de parametros sean los necesarios
@@ -406,40 +397,6 @@ public class ImpresorLCD {
             
             throw new IllegalArgumentException("Cadena " + comando
                     + " no contiene los parametros requeridos");
-        }
-    }
-
-    /**
-    *
-    * Metodo encargado de validar si una cadena es numerica
-    *
-    * @param cadena Cadena
-    * @return true if es un numero y false si no lo es
-    */
-    public boolean isNumeric(String cadena) {
-        try 
-        {
-            Integer.parseInt(cadena);
-            return true;
-        } 
-        catch (NumberFormatException ex) 
-        {
-            return false;
-        }
-    }
-    
-    /**
-    *
-    * Metodo encargado de el espacio de los numeros está en el rango correcto
-    *
-    * @param espacioDig Espacio entre numeros
-    */
-    public void CheckEspacioDig(int espacioDig) {
-        // se valida que el espaciado este entre 0 y 5
-        if(espacioDig <0 || espacioDig >5)
-        {
-            throw new IllegalArgumentException("El espacio entre "
-                    + "digitos debe estar entre 0 y 5");
         }
     }
 
