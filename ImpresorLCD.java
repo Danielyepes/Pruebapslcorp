@@ -59,12 +59,10 @@ public class ImpresorLCD {
         if (posFija.equalsIgnoreCase(POSICION_X)) 
         {
             AddLineInX(size, punto, matriz, caracter);
-            ImprimeMatriz();
         }
         else
         {
             AddLineInY(size, punto, matriz, caracter);
-            ImprimeMatriz();
         }
     }
 
@@ -76,15 +74,14 @@ public class ImpresorLCD {
      * @param punto Punto Pivote
      * @param size Tamaño Segmento
      * @param caracter Caracter Segmento
-     * @return 
+     * 
      */
-    public String[][] AddLineInY(int size, int[] punto, String[][] matriz, String caracter) {
+    private void AddLineInY(int size, int[] punto, String[][] matriz, String caracter) {
         
         for (int i = 1; i <= size; i++) {
             int valor = punto[0] + i;
             matriz[valor][punto[1]] = caracter;
         }
-        return matriz;
     }
     
     /**
@@ -95,14 +92,13 @@ public class ImpresorLCD {
      * @param punto Punto Pivote
      * @param size Tamaño Segmento
      * @param caracter Caracter Segmento
-     * @return 
+     *
      */
-    private String[][] AddLineInX(int size, int[] punto, String[][] matriz, String caracter) {
+    private void AddLineInX(int size, int[] punto, String[][] matriz, String caracter) {
         for (int y = 1; y <= size; y++) {
             int valor = punto[1] + y;
             matriz[punto[0]][valor] = caracter;
         }
-        return matriz;
     }
 
     /**
@@ -331,7 +327,7 @@ public class ImpresorLCD {
     * lanza una excepcion si el numero no es un digito
     * @param digito numero
     */
-    private void CheckIsDigit(char digito) throws IllegalArgumentException {
+    private void CheckIsDigit(char digito){
         //Valida que el caracter sea un digito
         
         if (!Character.isDigit(digito)) {
